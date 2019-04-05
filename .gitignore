@@ -1,4 +1,5 @@
 src/kandinsky-patterns-env
 src/.vscode
 test
+train
 *.pyc
