@@ -2,6 +2,7 @@ import os
 
 from PIL import Image
 from kp import KandinskyUniverse, RandomKandinskyFigure, SimpleObjectAndShape, ShapeOnShapes, KandinskyCaptions
+from kp import MyPatterns
 
 u  = KandinskyUniverse.SimpleUniverse()
 cg = KandinskyCaptions.CaptionGenerator (u)
@@ -39,14 +40,26 @@ if (__name__ == '__main__'):
 
     print('Welcome to the Kandinsky Figure Generator') 
 
-    randomkf =  RandomKandinskyFigure.Random (u,5,7)
-    generateImagesAndCaptions ("../test/randomkf", randomkf, 50)
+    #randomkf =  RandomKandinskyFigure.Random (u,5,7)
+    #generateImagesAndCaptions ("../test/randomkf", randomkf, 50)
 
-    redobjects = SimpleObjectAndShape.ContainsRedObjects(u,4,4)
-    generateClasses ("../test/onered", redobjects, 50)
+    #redobjects = SimpleObjectAndShape.ContainsRedObjects(u,4,4)
+    #generateClasses ("../test/onered", redobjects, 50)
 
-    triangleobjects = SimpleObjectAndShape.ContainsTriangles(u,4,4)
-    generateClasses ("../test/onetriangle", triangleobjects, 50)
+    #triangleobjects = SimpleObjectAndShape.ContainsTriangles(u,4,4)
+    #generateClasses ("../test/onetriangle", triangleobjects, 50)
 
-    shapeOnshapeObjects = ShapeOnShapes.ShapeOnShape (u, 20, 40)
-    generateClasses ("../test/shapeonshapes", shapeOnshapeObjects, 50, contrafactuals = True)
+    #shapeOnshapeObjects = ShapeOnShapes.ShapeOnShape (u, 20, 40)
+    #generateClasses ("../test/shapeonshapes", shapeOnshapeObjects, 50, contrafactuals = True)
+
+    count = 2000
+    dir = '../kandinsky/'
+
+    allColors = MyPatterns.AllColors(u, 4, 5)    
+    generateClasses (dir+"allcolors", allColors, count)
+
+    allShapes = MyPatterns.AllShapes(u, 4, 5)
+    generateClasses (dir+"allshapes", allShapes, count)
+
+    leftYellow = MyPatterns.LeftYellow(u, 4, 5)
+    generateClasses (dir+"leftyellow", leftYellow, count)

@@ -35,7 +35,7 @@ train_dir = os.path.join(data_dir, "train/")
 test_dir = os.path.join(data_dir, "test/")
 
 # URL for the data-set on the internet.
-data_url = "https://github.com/Hvass-Labs/knifey-spoony/raw/master/knifey-spoony.tar.gz"
+data_url = "https://github.com/glouwa/app-kandinsky-pattern-generator/raw/master/kandinsky.tar.gz"
 
 ########################################################################
 # Various constants for the size of the images.

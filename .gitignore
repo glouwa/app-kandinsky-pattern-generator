@@ -2,5 +2,7 @@ src/kandinsky-patterns-env
 src/.vscode
 test
 train
+kandinsky
+hvass
 *.pyc
 

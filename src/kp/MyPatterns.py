@@ -114,8 +114,9 @@ class AllColors(MyBase):
         for i in range(0, n):
             new = self._randomkf(self.min, 
                 self.max, 
-                SimpleUniverse.kandinsky_colors, 
-                SimpleUniverse.kandinsky_shapes)            
+                SimpleUniverse.kandinsky_colors,                  # unused will be overwritten
+                random.sample(SimpleUniverse.kandinsky_shapes,2)) # one shape missing
+
             for s in range (len(new)):                
                 cidx = s % len(SimpleUniverse.kandinsky_colors)                
                 new[s].color = SimpleUniverse.kandinsky_colors[cidx]
@@ -126,7 +127,8 @@ class AllColors(MyBase):
         kfs = []        
         for i in range(0, n):
             colorset = random.sample(SimpleUniverse.kandinsky_colors,2)
-            new = self._randomkf(self.min, self.max, colorset, SimpleUniverse.kandinsky_shapes)
+            shapeset = random.sample(SimpleUniverse.kandinsky_shapes,2)
+            new = self._randomkf(self.min, self.max, colorset, shapeset)
             kfs.append(new)
         return kfs  
 
@@ -143,8 +145,9 @@ class AllShapes(MyBase):
         for i in range(0, n):
             new = self._randomkf(self.min, 
                 self.max, 
-                SimpleUniverse.kandinsky_colors, 
-                SimpleUniverse.kandinsky_shapes)            
+                random.sample(SimpleUniverse.kandinsky_colors,2),  # one color missing
+                SimpleUniverse.kandinsky_shapes)                  # unused, will be overritten
+
             for s in range (len(new)):                
                 sidx = s % len(SimpleUniverse.kandinsky_shapes)                
                 new[s].shape = SimpleUniverse.kandinsky_shapes[sidx]
@@ -154,8 +157,9 @@ class AllShapes(MyBase):
     def false_kf(self, n=1):
         kfs = []        
         for i in range(0, n):
-            shapeset = random.sample(SimpleUniverse.kandinsky_shapes,2)
-            new = self._randomkf(self.min, self.max, SimpleUniverse.kandinsky_colors, shapeset)
+            colorset = random.sample(SimpleUniverse.kandinsky_colors,2)
+            shapeset = random.sample(SimpleUniverse.kandinsky_shapes,2)            
+            new = self._randomkf(self.min, self.max, colorset, shapeset)
             kfs.append(new)
         return kfs  
 
@@ -172,8 +176,9 @@ class LeftYellow(MyBase):
         for i in range(0, n):
             new = self._randomkf(self.min, 
                 self.max, 
-                SimpleUniverse.kandinsky_colors, 
-                SimpleUniverse.kandinsky_shapes)            
+                random.sample(['blue', 'red'], 1),                   # one color (but not yellow) missing
+                random.sample(SimpleUniverse.kandinsky_shapes,2))                 # one shape missing
+
             leftmost = np.argmin(list(map(lambda e:e.x, new)))
             new[leftmost].color = 'yellow'
             kfs.append(new)        
