@@ -57,7 +57,7 @@ img_shape = [img_size, img_size, num_channels]
 img_size_flat = img_size * img_size * num_channels
 
 # Number of classes.
-num_classes = 3
+num_classes = 6
 
 ########################################################################
 # Public functions that you may call to download the data-set from
@@ -125,8 +125,10 @@ def copy_files():
 
 if __name__ == '__main__':
     # Download and extract the data-set if it doesn't already exist.
+    print("maybe download by main")
     maybe_download_and_extract()
 
+    print("load download by main")
     # Load the data-set.
     dataset = load()
 
