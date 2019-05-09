@@ -35,7 +35,8 @@ train_dir = os.path.join(data_dir, "train/")
 test_dir = os.path.join(data_dir, "test/")
 
 # URL for the data-set on the internet.
-data_url = "https://github.com/glouwa/app-kandinsky-pattern-generator/raw/master/kandinsky.tar.gz"
+#data_url = "https://github.com/glouwa/app-kandinsky-pattern-generator/raw/master/kandinsky.tar.gz"
+data_url = "https://drive.google.com/open?id=1a9Ou_fcekN8GUm0-z7Y1qHq1iQccFr5t"
 
 ########################################################################
 # Various constants for the size of the images.
