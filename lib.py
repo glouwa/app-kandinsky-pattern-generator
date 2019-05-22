@@ -81,7 +81,7 @@ def _randomobject(colors, shapes, minsize = 0.1, maxsize = 0.5):
     o.y     = o.size/2 + random.random () * (1-o.size )
     return o
     
-def RandomFigure(render_size=(200, 200), obj_size=(.1, .6), obj_count=(2, 15), colors=['red', 'green'], shapes='circle', overlap_render_size=128:
+def RandomFigure(render_size=(200, 200), obj_size=(.1, .6), obj_count=(2, 15), colors=['red', 'green'], shapes='circle', overlap_render_size=128):
     kf = []
     kftemp = []
     n = random.randint (obj_count[0],obj_count[1])    
