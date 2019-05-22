@@ -45,8 +45,8 @@ def triangle (d,cx,cy,s,f):
         d.polygon([(cx,cy-s/2), (cx+dx, cy+dy), (cx-dx,cy+dy)], fill = f)
 
 
-def kandinskyFigureAsImage (shapes, width=200, subsampling = 2):
-  image = Image.new("RGB", (subsampling*width,subsampling*width), (220,220,220))
+def kandinskyFigureAsImage (shapes, width=220, subsampling = 2):
+  image = Image.new("RGB", (subsampling*width,subsampling*width), (width,width,width))
   d = ImageDraw.Draw(image)
   w = subsampling * width
 
@@ -57,7 +57,7 @@ def kandinskyFigureAsImage (shapes, width=200, subsampling = 2):
 
   return image
 
-def overlaps(shapes, width=1024):
+def overlaps(shapes, width=128):
   image = Image.new("L", (width,width), 0)
   sumarray = np.array(image)
   d = ImageDraw.Draw(image)
@@ -81,7 +81,7 @@ def _randomobject(colors, shapes, minsize = 0.1, maxsize = 0.5):
     o.y     = o.size/2 + random.random () * (1-o.size )
     return o
     
-def RandomFigure(obj_count=(2, 15), size='auto', colors=['red', 'green'], shapes='circle'):
+def RandomFigure(render_size=(200, 200), obj_size=(.1, .6), obj_count=(2, 15), colors=['red', 'green'], shapes='circle', overlap_render_size=128:
     kf = []
     kftemp = []
     n = random.randint (obj_count[0],obj_count[1])    
@@ -111,7 +111,7 @@ def RandomFigure(obj_count=(2, 15), size='auto', colors=['red', 'green'], shapes
         o = _randomobject(colors, shapes, minsize, maxsize)
         kftemp = kf[:]
         kftemp.append (o)
-        while overlaps(kftemp) and (t < maxtry):
+        while overlaps(kftemp, width=overlap_render_size) and (t < maxtry):
             o = _randomobject(colors, shapes, minsize, maxsize)
             kftemp = kf[:]
             kftemp.append (o)
@@ -137,7 +137,21 @@ class Figure:
     def save(self, path):
         return kandinskyFigureAsImage(self.f).save(path)
 
-if __name__ == "__main__":
-    f = FromRandom()
-    f.save('test.png')
+import matplotlib.pyplot as plt
+def plot_history(history):
+    plt.plot(history.history['acc'])
+    plt.plot(history.history['val_acc'])
+    plt.title('Model accuracy')
+    plt.ylabel('Accuracy')
+    plt.xlabel('Epoch')
+    plt.legend(['Train', 'Test'], loc='upper left')
+    plt.show()
+
+    plt.plot(history.history['loss'])
+    plt.plot(history.history['val_loss'])
+    plt.title('Model loss')
+    plt.ylabel('Loss')
+    plt.xlabel('Epoch')
+    plt.legend(['Train', 'Test'], loc='upper left')
+    plt.show()
 
