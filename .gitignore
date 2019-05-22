@@ -1,5 +1,10 @@
 src/kandinsky-patterns-env
 src/.vscode
+count/
+count_test/
+kandinsky_color_large/
+more_than/
+more_than_test/
 test
 train
 kandinsky
