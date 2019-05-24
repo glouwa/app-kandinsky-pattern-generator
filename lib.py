@@ -57,7 +57,7 @@ def kandinskyFigureAsImage (shapes, width=220, subsampling = 2):
 
   return image
 
-def overlaps(shapes, width=128):
+def overlaps(shapes, width=64):
   image = Image.new("L", (width,width), 0)
   sumarray = np.array(image)
   d = ImageDraw.Draw(image)
@@ -138,7 +138,7 @@ class Figure:
         return kandinskyFigureAsImage(self.f).save(path)
 
 import matplotlib.pyplot as plt
-def plot_history(history):
+def plot_history(history, ):
     plt.plot(history.history['acc'])
     plt.plot(history.history['val_acc'])
     plt.title('Model accuracy')
@@ -155,3 +155,19 @@ def plot_history(history):
     plt.legend(['Train', 'Test'], loc='upper left')
     plt.show()
 
+def plot_history_categorical(history, ):
+    plt.plot(history.history['categorical_accuracy'])
+    plt.plot(history.history['val_categorical_accuracy'])
+    plt.title('Model accuracy')
+    plt.ylabel('Accuracy')
+    plt.xlabel('Epoch')
+    plt.legend(['Train', 'Test'], loc='upper left')
+    plt.show()
+
+    plt.plot(history.history['loss'])
+    plt.plot(history.history['val_loss'])
+    plt.title('Model loss')
+    plt.ylabel('Loss')
+    plt.xlabel('Epoch')
+    plt.legend(['Train', 'Test'], loc='upper left')
+    plt.show()
