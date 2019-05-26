@@ -14,7 +14,7 @@ class kandinskyShape:
           self.size  = 0.5
   
   def __str__(self):  
-      return "%s %c %3.1f (%4.2f, %4.2f)"%(self.color, self.shape, self.size, self.x, self.y)
+      return "%s %s %3.1f (%4.2f, %4.2f)"%(self.color, self.shape, self.size, self.x, self.y)
       #return self.color + " " +  self.shape + " (" + \
       #       str(self.size) + "," + str(self.x) + "," + str(self.y) + ")"
 
