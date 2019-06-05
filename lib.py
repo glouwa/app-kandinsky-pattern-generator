@@ -45,6 +45,39 @@ def triangle (d,cx,cy,s,f):
         dy = s * math.sin (r) / 2
         d.polygon([(cx,cy-s/2), (cx+dx, cy+dy), (cx-dx,cy+dy)], fill = f)
 
+def triangle2 (d,cx,cy,s,f):        
+        # correct the size to  the same area as an square
+        s = s * 0.9
+        corners = 3
+
+        points = list()
+        for e in range(corners):
+          r = math.radians(360/corners*e)
+          dx = s * math.cos (r) / 2
+          dy = s * math.sin (r) / 2
+          p =  (cx+dx , cy+dy)
+          points.append(p)
+
+        d.polygon(p, fill = f)
+
+def star (d,cx,cy,s,f):        
+        corners = 5
+        points = list()
+        for e in range(corners):
+          r = math.radians(360/corners*e)
+          dx = s * math.cos (r) / 2
+          dy = s * math.sin (r) / 2
+          p =  (cx+dx , cy+dy)
+          points.append(p)
+
+          r = math.radians(360/corners*e+360/corners/2)
+          dx = s * math.cos (r) / 5
+          dy = s * math.sin (r) / 5                    
+          p =  (cx+dx , cy+dy)
+          points.append(p)
+
+        d.polygon(points, fill = f)       
+
 
 def kandinskyFigureAsImage (shapes, width=220, subsampling = 2):
   image = Image.new("RGB", (subsampling*width,subsampling*width), (width,width,width))
@@ -145,7 +178,7 @@ def plot_history(history, ):
     plt.title('Model accuracy')
     plt.ylabel('Accuracy')
     plt.xlabel('Epoch')
-    plt.legend(['Train', 'Test'], loc='upper left')
+    plt.legend(['Train', 'Validation'], loc='upper left')
     plt.show()
 
     plt.plot(history.history['loss'])
@@ -153,22 +186,18 @@ def plot_history(history, ):
     plt.title('Model loss')
     plt.ylabel('Loss')
     plt.xlabel('Epoch')
-    plt.legend(['Train', 'Test'], loc='upper left')
+    plt.legend(['Train', 'Validation'], loc='upper left')
     plt.show()
 
-def plot_history_categorical(history, ):
-    plt.plot(history.history['categorical_accuracy'])
-    plt.plot(history.history['val_categorical_accuracy'])
-    plt.title('Model accuracy')
-    plt.ylabel('Accuracy')
-    plt.xlabel('Epoch')
-    plt.legend(['Train', 'Test'], loc='upper left')
-    plt.show()
-
-    plt.plot(history.history['loss'])
-    plt.plot(history.history['val_loss'])
-    plt.title('Model loss')
-    plt.ylabel('Loss')
-    plt.xlabel('Epoch')
-    plt.legend(['Train', 'Test'], loc='upper left')
-    plt.show()
+def plot_history_categorical(history):
+    def plot_metric(m, readable):
+        plt.plot(history[m])
+        plt.plot(history['val_%s'%m])
+        plt.title('Model %s'%readable)
+        plt.ylabel(readable)
+        plt.xlabel('Epoch')
+        plt.legend(['Train', 'Validation'], loc='upper left')
+        plt.show()
+    
+    plot_metric('categorical_accuracy', 'Accuracy')
+    plot_metric('loss', 'Loss')
