@@ -1,13 +1,10 @@
-# Kandinsky Pattern Generator
+Based on the Kandinsky Pattern Generator this project trains a VGG16 network using tensorflow.
+Tests with output spaces are visualized with iNNvestigate, a Layer-wise Relevance Propagation toolbox.
 
-A **Kandinsky Pattern** is of a set of Kandinsky Figures following a "Model of Truth", i.e. for each  Kandinsky Figure, we can tell if it belongs to the Kandinsky Pattern and why this is the case.
+Selected notebooks:
+[Train on 2 properites](https://colab.research.google.com/github/glouwa/app-kandinsky-pattern-generator/blob/master/kandinsky_multilabel_circles_and_stars_count_red%2C_count_yellow.ipynb)
 
-A **Kandinsky Figure** consists of 1 ... n objects in a square with the following assumptions:
+[Train on 3 properites](https://colab.research.google.com/github/glouwa/kandinsky-pattern-generator/blob/master/kandinsky_multilabel_circles_and_stars_count_red%2C_count_stars%2C_count_red_stars.ipynb)
 
-*  each objects has a 
-   - type: *circle*, *square*,  *triangle*, etc. 
-   - colour: *red*, *blue*,  *yellow*, etc. 
-   - specifc size and position  
-*   Objects are non overlapping
-*   Objects are completly within the square, i.e. they have a maximal size
-*   Objects are recognisable, i.e. they have a minimal size
+
+
